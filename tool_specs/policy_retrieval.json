@@ -1,0 +1,20 @@
+[
+  {
+    "name": "policy_retrieval",
+    "description": "Retrieve return policy information from the knowledge base. Searches for relevant policy documents based on a natural language query. Optionally filter by country code.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "A natural language query describing the policy information needed (e.g. 'return policy for electronics in the US')"
+        },
+        "country": {
+          "type": "string",
+          "description": "Optional two-letter country code to filter results (e.g. US, UK, IN)"
+        }
+      },
+      "required": ["query"]
+    }
+  }
+]

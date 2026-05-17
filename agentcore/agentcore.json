@@ -14,14 +14,102 @@
       "entrypoint": "main.py",
       "codeLocation": "app/CustomerAssistaantAgent/",
       "runtimeVersion": "PYTHON_3_13",
+      "envVars": [
+        {
+          "name": "AGENTCORE_MEMORY_ID",
+          "value": "AgentCoreProject_CustomerAssistantMemory-1lnC3eFpea"
+        },
+        {
+          "name": "GATEWAY_URL",
+          "value": "https://agentcoreproject-workshop-gateway-e3o0rwleno.gateway.bedrock-agentcore.us-west-2.amazonaws.com/mcp"
+        },
+        {
+          "name": "GATEWAY_CLIENT_ID",
+          "value": "46cncg3b4p5kutefgkgqt195gs"
+        },
+        {
+          "name": "GATEWAY_CLIENT_SECRET",
+          "value": "18hm7n4f0gemc9iltt2rd73kubvrvda3eo6nsoo5f1gp1v1pso28"
+        },
+        {
+          "name": "GATEWAY_TOKEN_ENDPOINT",
+          "value": "https://workshop-gateway-auth-822428608511.auth.us-west-2.amazoncognito.com/oauth2/token"
+        },
+        {
+          "name": "GATEWAY_SCOPE",
+          "value": "gateway/invoke"
+        }
+      ],
       "networkMode": "PUBLIC",
       "protocol": "HTTP"
     }
   ],
-  "memories": [],
+  "memories": [
+    {
+      "name": "CustomerAssistantMemory",
+      "eventExpiryDuration": 7,
+      "strategies": [
+        {
+          "type": "SEMANTIC",
+          "name": "FactExtractor",
+          "namespaces": [
+            "/facts/{actorId}/"
+          ]
+        },
+        {
+          "type": "SUMMARIZATION",
+          "name": "SessionSummarizer",
+          "namespaces": [
+            "/summaries/{actorId}/{sessionId}/"
+          ]
+        },
+        {
+          "type": "USER_PREFERENCE",
+          "name": "PreferenceLearner",
+          "namespaces": [
+            "/preferences/{actorId}/"
+          ]
+        }
+      ]
+    }
+  ],
   "credentials": [],
   "evaluators": [],
   "onlineEvalConfigs": [],
-  "agentCoreGateways": [],
+  "agentCoreGateways": [
+    {
+      "name": "workshop-gateway",
+      "description": "Gateway for workshop tools",
+      "targets": [
+        {
+          "name": "data-lookup",
+          "targetType": "lambdaFunctionArn",
+          "lambdaFunctionArn": {
+            "lambdaArn": "arn:aws:lambda:us-west-2:822428608511:function:workshop-data-lookup",
+            "toolSchemaFile": "./tool_specs/data_lookup.json"
+          }
+        },
+        {
+          "name": "policy-retrieval",
+          "targetType": "lambdaFunctionArn",
+          "lambdaFunctionArn": {
+            "lambdaArn": "arn:aws:lambda:us-west-2:822428608511:function:workshop-policy-retrieval",
+            "toolSchemaFile": "./tool_specs/policy_retrieval.json"
+          }
+        }
+      ],
+      "authorizerType": "CUSTOM_JWT",
+      "authorizerConfiguration": {
+        "customJwtAuthorizer": {
+          "discoveryUrl": "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_ZBm6Q2Kto/.well-known/openid-configuration",
+          "allowedClients": [
+            "46cncg3b4p5kutefgkgqt195gs"
+          ]
+        }
+      },
+      "enableSemanticSearch": true,
+      "exceptionLevel": "NONE"
+    }
+  ],
   "policyEngines": []
 }

@@ -1,3 +1,31 @@
 {
-  "targets": {}
+  "targets": {
+    "default": {
+      "resources": {
+        "runtimes": {
+          "CustomerAssistaantAgent": {
+            "runtimeId": "AgentCoreProject_CustomerAssistaantAgent-vR8ln082QD",
+            "runtimeArn": "arn:aws:bedrock-agentcore:us-west-2:822428608511:runtime/AgentCoreProject_CustomerAssistaantAgent-vR8ln082QD",
+            "roleArn": "arn:aws:iam::822428608511:role/AgentCore-AgentCoreProjec-ApplicationAgentCustomerA-XQUMuA16qsoZ"
+          }
+        },
+        "memories": {
+          "CustomerAssistantMemory": {
+            "memoryId": "AgentCoreProject_CustomerAssistantMemory-1lnC3eFpea",
+            "memoryArn": "arn:aws:bedrock-agentcore:us-west-2:822428608511:memory/AgentCoreProject_CustomerAssistantMemory-1lnC3eFpea"
+          }
+        },
+        "mcp": {
+          "gateways": {
+            "workshop-gateway": {
+              "gatewayId": "agentcoreproject-workshop-gateway-e3o0rwleno",
+              "gatewayArn": "arn:aws:bedrock-agentcore:us-west-2:822428608511:gateway/agentcoreproject-workshop-gateway-e3o0rwleno",
+              "gatewayUrl": "https://agentcoreproject-workshop-gateway-e3o0rwleno.gateway.bedrock-agentcore.us-west-2.amazonaws.com/mcp"
+            }
+          }
+        },
+        "stackName": "AgentCore-AgentCoreProject-default"
+      }
+    }
+  }
 }
