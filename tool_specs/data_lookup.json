@@ -40,5 +40,32 @@
       },
       "required": ["product_id"]
     }
+  },
+  {
+    "name": "find_returned_products",
+    "description": "Find all products that have been returned across all customers. Returns a list of returned orders enriched with product names.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "process_refund",
+    "description": "Process a refund for a specific order. Updates the order status to REFUNDED and returns confirmation with product details. Requires both customer_id and product_id to identify the order.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "customer_id": {
+          "type": "string",
+          "description": "The customer ID who placed the order (e.g. C-01)"
+        },
+        "product_id": {
+          "type": "string",
+          "description": "The product ID of the order to refund (e.g. P-001)"
+        }
+      },
+      "required": ["customer_id", "product_id"]
+    }
   }
 ]
