@@ -1,0 +1,44 @@
+[
+  {
+    "name": "order_lookup",
+    "description": "Look up all orders for a customer by customer ID. Returns order details including product IDs, statuses, and purchase dates.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "customer_id": {
+          "type": "string",
+          "description": "The unique identifier of the customer (e.g. C-01)"
+        }
+      },
+      "required": ["customer_id"]
+    }
+  },
+  {
+    "name": "user_lookup",
+    "description": "Retrieve customer information by customer ID. Returns the customer's name and country code.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "customer_id": {
+          "type": "string",
+          "description": "The unique identifier of the customer (e.g. C-01)"
+        }
+      },
+      "required": ["customer_id"]
+    }
+  },
+  {
+    "name": "product_lookup",
+    "description": "Retrieve product information by product ID. Returns the product name, provider, and category.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "product_id": {
+          "type": "string",
+          "description": "The unique identifier of the product (e.g. P-001)"
+        }
+      },
+      "required": ["product_id"]
+    }
+  }
+]
